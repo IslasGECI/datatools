@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+#Cuenta gatos semanalmente del registro posicion trampas de Socorro
+lista_archivos=$(ls *.csv)
+for archivo in ${lista_archivos}; do
+  echo "Procesando el archivo ${archivo}"
+  ./cuenta_gatos ${archivo} | ./transpon_esfuerzo_captura >> resumen_semanal.csv
+done
+#
+#Cuenta el total de noches trampa y el total de capturas
+csvsql --no-header-row --query \
+  "SELECT SUM(a) AS Total_noches_trampa, SUM(b) AS Total_capturas
+  FROM resumen_semanal" resumen_semanal.csv
+rm resumen_semanal.csv
