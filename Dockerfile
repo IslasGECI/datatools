@@ -1,2 +1,2 @@
-FROM islasgeci/base:89e5
+FROM islasgeci/base:82ce
 RUN pip install csvkit
