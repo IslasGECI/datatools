@@ -13,4 +13,3 @@ install:
 	cp ./src/* /usr/local/bin
 	chmod +x /usr/local/bin/*
 	export PATH="$${PATH}:/usr/local/bin"
-	
