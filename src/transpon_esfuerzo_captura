@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #
-# Transpone los resultados de `cuenta_gatos.sh`
+# Transpone los resultados de 'cuenta_gatos'
 tr --squeeze-repeats '\n' "," | cut --fields=-2 --delimiter=,
