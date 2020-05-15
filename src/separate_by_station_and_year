@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#Función que separa la tabla de estaciones meteorológicas de IG por estación y por año
+# Función que separa la tabla de estaciones meteorológicas de IG por estación y por año
 for station in Norte Pista Sur Bosque; do
   for year in {2008..2020}; do
     data_file=${1}

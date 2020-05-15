@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#Cuenta las noches trampas activas (A) y las capturas de gatos (X)
+# Cuenta las noches trampas activas (A) y las capturas de gatos (X)
 archivo_de_entrada=${1}
 for estado_trampa in A X; do
 csvcut --not-columns 1:4 ${archivo_de_entrada} \
