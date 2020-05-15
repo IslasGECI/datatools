@@ -7,7 +7,7 @@ for archivo in ${lista_archivos}; do
   ./cuenta_gatos ${archivo} | ./transpon_esfuerzo_captura >> resumen_semanal.csv
 done
 #
-#Cuenta el total de noches trampa y el total de capturas
+# Cuenta el total de noches trampa y el total de capturas
 csvsql --no-header-row --query "
   SELECT SUM(a) AS Total_noches_trampa, SUM(b) AS Total_capturas
   FROM resumen_semanal

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Elimina archivos CSV que solo tienen el encabezado y no tienen archivos
+# Elimina archivos CSV que solo tienen el encabezado y no tienen datos
 file_list=$(ls *.csv)
 lines=1
 for file in ${file_list}; do
