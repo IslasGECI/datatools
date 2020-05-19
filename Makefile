@@ -1,10 +1,7 @@
 tests: install
-	. ./tests/test_geci-install
-	. ./tests/test_make-install
-	cd tests && . ./test_geci-tdp2xls
 
 # Enlista phonies
-.PHONY: install tests
+.PHONY: install
 
 # Instala estas herramientas miscelaneas
 install:
