@@ -1,0 +1,3 @@
+Procesando el archivo esfuerzo_data_tests.csv
+Total_noches_trampa,Total_capturas
+51,2
