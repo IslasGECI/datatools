@@ -4,7 +4,7 @@
 file_list=$(ls *.csv)
 for file in ${file_list}; do
   echo "Procesando el archivo ${file}"
-  ./cuenta_gatos ${file} | ./transpon_esfuerzo_captura >> resumen_semanal.csv
+  cuenta_gatos ${file} | transpon_esfuerzo_captura >> resumen_semanal.csv
 done
 #
 # Cuenta el total de noches trampa y el total de capturas
