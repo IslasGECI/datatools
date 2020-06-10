@@ -6,5 +6,6 @@ lines=1
 for file in ${file_list}; do
   if [ "$(< "${file}" wc -l)" -eq "${lines}" ]; then
     echo -e "El archivo ${file} está vacio"
+    rm ${file}
   fi
 done
