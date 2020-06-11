@@ -1,7 +1,8 @@
 tests: install
+	pytest --verbose tests/bashtest/
 
 # Enlista phonies
-.PHONY: install
+.PHONY: clean install tests
 
 # Instala estas herramientas miscelaneas
 install:
@@ -10,3 +11,8 @@ install:
 	cp ./src/* /usr/local/bin
 	chmod +x /usr/local/bin/*
 	export PATH="$${PATH}:/usr/local/bin"
+
+clean:
+	rm --force *.tmp
+	rm --force *.csv
+	rm --recursive --force tests/**/__pycache__
