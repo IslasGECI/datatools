@@ -1,8 +1,8 @@
 import subprocess
 def test_resumen_semanal():
-    assert_distinct_position_traps("./tests/data_tests/esfuerzo_data_tests.csv")
+    assert_weekly_summary("./tests/data_tests/esfuerzo_data_tests.csv")
 
-def assert_distinct_position_traps(file_input):
+def assert_weekly_summary(file_input):
     bash_command = f"cp {file_input} . && resumen_semanal > ./salida.tmp"
     subprocess.getoutput(bash_command)
     output = have_same_content("./salida.tmp")
