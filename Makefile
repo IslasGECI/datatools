@@ -2,7 +2,10 @@ tests: install
 	pytest --verbose tests/bashtest/
 
 # Enlista phonies
-.PHONY: clean install tests
+.PHONY: clean install format tests
+
+format:
+	black --check --line-length 100 tests
 
 # Instala estas herramientas miscelaneas
 install:

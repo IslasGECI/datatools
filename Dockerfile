@@ -1,3 +1,5 @@
 FROM islasgeci/base:82ce
-RUN pip install pytest
+RUN pip install \
+    black \
+    pytest
 COPY . .
