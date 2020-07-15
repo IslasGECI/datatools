@@ -1,9 +1,11 @@
 tests: install
 	pytest --verbose tests/bashtest/
-	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
 
 # Enlista phonies
-.PHONY: clean install tests
+.PHONY: clean install format tests
+
+format:
+	black --check --line-length 100 tests
 
 # Instala estas herramientas miscelaneas
 install:
