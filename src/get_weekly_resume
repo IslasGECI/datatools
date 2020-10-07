@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+data_file=${1}
+path_file=$(dirname ${data_file})
+name_file=$(basename ${data_file} .csv)
+captures_file="${path_file}/captures_${name_file}.csv"
+effort_file="${path_file}/effort_${name_file}.csv"
+tmp_and_real_dates_file="${path_file}/dates_${name_file}.csv"
+weekly_resume="${path_file}/weekly_resume_${name_file}.csv"
+data_file_tmp_header="${path_file}/${name_file}_tmp_header.csv"
+
+src/change_header ${data_file} \
+  > ${data_file_tmp_header}
+
+src/get_effort_or_captures_by_zone ${data_file_tmp_header} Capturas \
+  | src/remove_rows_with_specific_text \
+  > ${effort_file}
+
+src/get_effort_or_captures_by_zone ${data_file_tmp_header} Esfuerzo \
+  | src/remove_rows_with_specific_text \
+  > ${captures_file}
+
+src/make_dates_header.R --data ${data_file} \
+  > ${real_and_tmp_dates}
+
+src/query_weekly_resume_effort_and_captures ${effort_file} ${captures_file} ${real_and_tmp_dates} \
+  > ${weekly_resume}
+
+rm ${real_and_tmp_dates}
+rm ${captures_file}
+rm ${effort_file}
+rm ${data_file_tmp_header}
