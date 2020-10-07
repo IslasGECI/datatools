@@ -1,8 +1,7 @@
 library(data.table)
 
-transform_data_header <- function(csv){
-    csv_file <- fread(csv, drop = c(1:4))
-    dates <- names(csv_file)
+transform_data_header <- function(csv_data){
+    dates <- names(csv_data)
     tmp_date = c()
     real_date = c()
     for (i in 1:length(dates)){
@@ -13,5 +12,5 @@ transform_data_header <- function(csv){
         "Fecha_tmp" = tmp_date,
         "Fecha_real" = real_date
     )
-    print(dates_table)
+    return(dates_table)
 }
