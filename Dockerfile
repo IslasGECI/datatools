@@ -1,4 +1,5 @@
 FROM islasgeci/base:82ce
+RUN Rscript -e "install.packages(c('data.table'), repos='http://cran.rstudio.com')"
 RUN pip install \
     black \
     pytest
