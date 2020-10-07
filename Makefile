@@ -1,5 +1,6 @@
 tests: install
 	pytest --verbose tests/bashtest/
+	bats tests/bats_test/test_weekly_resume.sh
 
 # Enlista phonies
 .PHONY: clean install format tests
