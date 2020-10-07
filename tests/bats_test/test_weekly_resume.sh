@@ -28,3 +28,9 @@
   result="$(./src/remove_rows_with_specific_text tests/data_tests/messy_effort_by_zone.csv)"
   [ "$output" = "$result" ]
 }
+
+@test "weekly_resume_effort_and_captures" {
+  run cat tests/data_tests/cleaned_effort_by_zone.csv
+  result="$(./src/weekly_resume_effort_and_captures tests/data_tests/cleaned_effort_by_zone.csv tests/data_tests/cleaned_captures_by_zone.csv tests/data_tests/tmp_and_real_dates.csv)"
+  [ "$output" = "$result" ]
+}
