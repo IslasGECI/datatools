@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 #
-# Función que cuenta el esfuerzo por día y lo agrupa por zona.
+# Función que cuenta el esfuerzo o Capturas por día y lo agrupa por zona.
+# ./src/get_effort_by_zone [FILE] [ARGUMENTO]
+# El argumento puede ser 'Esfuerzo' o 'Capturas'
 for fecha in Fecha_1 Fecha_2 Fecha_3 Fecha_4 Fecha_5 Fecha_6 Fecha_7; do
   file_name=${1}
+  effort_or_captures=${2}
+  [ "$effort_or_captures" = Esfuerzo ] && conditional="${fecha} = 'X' OR ${fecha} = 'A'"
+  [ "$effort_or_captures" = Capturas ] && conditional="${fecha} = 'X'"
+  
   table_name=$(basename "${file_name}" .csv)
   csvsql --snifflimit 0 --no-inference --blanks --query \
   "SELECT
@@ -12,9 +18,9 @@ for fecha in Fecha_1 Fecha_2 Fecha_3 Fecha_4 Fecha_5 Fecha_6 Fecha_7; do
       WHEN ID = 'SM4-Melpo' THEN '01'
       ELSE SUBSTR(ID,4,2)
     END Zona,
-    COUNT(*) AS Esfuerzo
+    COUNT(*) AS '${effort_or_captures}'
   FROM ${table_name}
-  WHERE ${fecha} = 'X' OR ${fecha} = 'A'
+  WHERE ${conditional}
   GROUP BY Zona
   " ${file_name}
 done
