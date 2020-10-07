@@ -1,7 +1,9 @@
 library(testthat)
+
 setwd("/workspaces/datatools/")
 source("src/transform_data_header_function.R")
 file_tests <- "tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv"
+data_tests <- fread(file_tests, drop = c(1:4))
 
 output_tests <- data.frame(
     "Fecha_tmp" = c(
@@ -13,5 +15,5 @@ output_tests <- data.frame(
 )
 
 test_that("Adquiere fechas desde encabezado de base de datos", {
-    expect_equal(transform_data_header(file_tests), output_tests)
+    expect_equal(transform_data_header(data_tests), output_tests)
 })
