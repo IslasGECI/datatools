@@ -25,5 +25,5 @@ FROM
   LEFT OUTER JOIN ${captures_table} AS c
   ON e.Fecha = c.Fecha AND e.Zona = c.Zona) AS jt
 INNER JOIN ${real_and_tmp_dates_table} AS d
-ON d.tmp_date = jt.Fecha
+ON d.tmp_date = jt.tmp_Fecha
 " ${effort_name_file} ${captures_name_file} ${real_and_tmp_dates_file}
