@@ -22,3 +22,9 @@
   result="$(./src/get_effort_by_zone tests/data_tests/tmp_header_IG_GATOS_30AGO2020.csv)"
   [ "$output" = "$result" ]
 }
+
+@test "remove_rows_with_specific_text" {
+  run cat tests/data_tests/cleaned_effort_by_zone.csv
+  result="$(./src/remove_rows_with_specific_text tests/data_tests/messy_effort_by_zone.csv)"
+  [ "$output" = "$result" ]
+}
