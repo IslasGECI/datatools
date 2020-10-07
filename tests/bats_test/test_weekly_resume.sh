@@ -30,7 +30,7 @@
 }
 
 @test "weekly_resume_effort_and_captures" {
-  run cat tests/data_tests/cleaned_effort_by_zone.csv
+  run cat tests/data_tests/weekly_resume_effort_and_captures.csv
   result="$(./src/weekly_resume_effort_and_captures tests/data_tests/cleaned_effort_by_zone.csv tests/data_tests/cleaned_captures_by_zone.csv tests/data_tests/tmp_and_real_dates.csv)"
   [ "$output" = "$result" ]
 }

@@ -9,7 +9,7 @@ captures_table=$(basename "${captures_name_file}" .csv)
 real_and_tmp_dates_table=$(basename "${real_and_tmp_dates_file}" .csv)
 
 csvsql --snifflimit 0 --no-inference --blanks --query "
-SELECT 
+SELECT
 d.real_date AS Fecha,
 jt.Zona, jt.Esfuerzo,
   CASE
