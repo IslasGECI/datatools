@@ -9,8 +9,8 @@ transform_data_header <- function(csv_data){
         real_date <- append(real_date, dates[i])
     }
     dates_table <- data.frame(
-        "Fecha_tmp" = tmp_date,
-        "Fecha_real" = real_date
+        "tmp_date" = tmp_date,
+        "real_date" = real_date
     )
     return(dates_table)
 }
