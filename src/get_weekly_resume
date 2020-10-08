@@ -32,7 +32,7 @@ src/query_weekly_resume_effort_and_captures \
   ${captures_file} \
   ${tmp_and_real_dates_file}
 
-rm ${real_and_tmp_dates}
-rm ${captures_file}
-rm ${effort_file}
-rm ${data_file_tmp_header}
+rm -f ${real_and_tmp_dates}
+rm -f ${captures_file}
+rm -f ${effort_file}
+rm -f ${data_file_tmp_header}

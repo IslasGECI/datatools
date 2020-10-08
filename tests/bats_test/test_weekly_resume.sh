@@ -34,3 +34,9 @@
   result="$(./src/query_weekly_resume_effort_and_captures tests/data_tests/cleaned_effort_by_zone.csv tests/data_tests/cleaned_captures_by_zone.csv tests/data_tests/tmp_and_real_dates.csv)"
   [ "$output" = "$result" ]
 }
+
+@test "get_weekly_resume" {
+  run src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv
+  result="$(cat tests/data_tests/resumen_semanal_IG_POSICION_TRAMPAS_30AGO2020.csv)"
+  [ "$output" = "$result" ]
+}
