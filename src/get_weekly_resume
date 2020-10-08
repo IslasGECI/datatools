@@ -31,7 +31,7 @@ src/query_weekly_resume_effort_and_captures \
   ${effort_file} \
   ${captures_file} \
   ${tmp_and_real_dates_file}\
-  > ${weekly_resume}
+
 
 rm -f ${real_and_tmp_dates}
 rm -f ${captures_file}

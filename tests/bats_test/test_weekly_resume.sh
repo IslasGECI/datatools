@@ -36,7 +36,10 @@
 }
 
 @test "get_weekly_resume" {
-  run src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv
-  result="$(cat tests/data_tests/resumen_semanal_IG_POSICION_TRAMPAS_30AGO2020.csv)"
-  [ "$output" = "$result" ]
+  src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv \
+    > tests/data_tests/resumen_semanal.csv
+  result="$(diff \
+    tests/data_tests/resumen_semanal_30AGO2020.csv \
+    tests/data_tests/resumen_semanal.csv | wc -l)"
+  [ "$result" -eq 0 ]
 }
