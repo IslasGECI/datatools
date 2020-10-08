@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #
+# Función que corre todas los scripts necesarios para generar el resumen semanal del archivo de 'IG_POSICION_TRAMPAS'
 data_file=${1}
 path_file=$(dirname ${data_file})
 name_file=$(basename ${data_file} .csv)
