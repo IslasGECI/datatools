@@ -6,10 +6,10 @@ file_tests <- "tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv"
 data_tests <- fread(file_tests, drop = c(1:4))
 
 output_tests <- data.frame(
-    "Fecha_tmp" = c(
+    "tmp_date" = c(
         "Fecha_1", "Fecha_2", "Fecha_3", "Fecha_4", "Fecha_5", "Fecha_6","Fecha_7"
     ),
-    "Fecha_real" = c(
+    "real_date" = c(
         "24/Ago/2020", "25/Ago/2020", "26/Ago/2020", "27/Ago/2020", "28/Ago/2020", "29/Ago/2020", "30/Ago/2020"
     )
 )
