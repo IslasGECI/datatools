@@ -9,22 +9,28 @@ tmp_and_real_dates_file="${path_file}/dates_${name_file}.csv"
 weekly_resume="${path_file}/weekly_resume_${name_file}.csv"
 data_file_tmp_header="${path_file}/${name_file}_tmp_header.csv"
 
-src/change_header ${data_file} \
+src/change_header \
+  ${data_file} \
   > ${data_file_tmp_header}
 
-src/get_effort_or_captures_by_zone ${data_file_tmp_header} Capturas \
+src/get_effort_or_captures_by_zone \
+  ${data_file_tmp_header} Esfuerzo \
   | src/remove_rows_with_specific_text \
   > ${effort_file}
 
-src/get_effort_or_captures_by_zone ${data_file_tmp_header} Esfuerzo \
+src/get_effort_or_captures_by_zone \
+  ${data_file_tmp_header} Capturas \
   | src/remove_rows_with_specific_text \
   > ${captures_file}
 
-src/make_dates_header.R --data ${data_file} \
-  > ${real_and_tmp_dates}
+src/make_dates_header.R \
+  --data ${data_file} \
+  > ${tmp_and_real_dates_file}
 
-src/query_weekly_resume_effort_and_captures ${effort_file} ${captures_file} ${real_and_tmp_dates} \
-  > ${weekly_resume}
+src/query_weekly_resume_effort_and_captures \
+  ${effort_file} \
+  ${captures_file} \
+  ${tmp_and_real_dates_file}
 
 rm ${real_and_tmp_dates}
 rm ${captures_file}
