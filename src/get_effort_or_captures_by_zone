@@ -6,8 +6,8 @@
 for fecha in Fecha_1 Fecha_2 Fecha_3 Fecha_4 Fecha_5 Fecha_6 Fecha_7; do
   file_name=${1}
   effort_or_captures=${2}
-  [ "$effort_or_captures" = Esfuerzo ] && conditional="${fecha} = 'X' OR ${fecha} = 'A'"
-  [ "$effort_or_captures" = Capturas ] && conditional="${fecha} = 'X'"
+  [ "$effort_or_captures" == Esfuerzo ] && conditional="${fecha} = 'X' OR ${fecha} = 'A'"
+  [ "$effort_or_captures" == Capturas ] && conditional="${fecha} = 'X'"
   
   table_name=$(basename "${file_name}" .csv)
   csvsql --snifflimit 0 --no-inference --blanks --query \
