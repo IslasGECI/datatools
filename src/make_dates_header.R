@@ -4,7 +4,6 @@ library(tidyverse)
 library(optparse)
 library(reshape2)
 
-setwd("/workspaces/datatools/")
 source("src/transform_data_header_function.R")
 
 # Sección de la CLI
