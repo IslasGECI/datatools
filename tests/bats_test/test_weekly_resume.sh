@@ -42,3 +42,11 @@
     tests/data_tests/weekly_resume_IG_POSICION_TRAMPAS_30AGO2020.csv | wc -l)"
   [ "$result" -eq 0 ]
 }
+
+@test "get_weekly_resume_without_captures" {
+  src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
+  result="$(diff \
+    tests/data_tests/resumen_semanal_30AGO2020_sin_capturas.csv \
+    tests/data_tests/weekly_resume_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc -l)"
+  [ "$result" -eq 0 ]
+}
