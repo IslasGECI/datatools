@@ -7,7 +7,7 @@ name_file=$(basename ${data_file} .csv)
 captures_file="${path_file}/captures_${name_file}.csv"
 effort_file="${path_file}/effort_${name_file}.csv"
 tmp_and_real_dates_file="${path_file}/dates_${name_file}.csv"
-weekly_resume="${path_file}/weekly_resume_${name_file}.csv"
+weekly_resume="${path_file}/weekly_summary_${name_file}.csv"
 data_file_tmp_header="${path_file}/${name_file}_tmp_header.csv"
 
 src/change_header \
