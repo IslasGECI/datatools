@@ -31,12 +31,12 @@
 
 @test "query_weekly_resume_effort_and_captures" {
   run cat tests/data_tests/weekly_resume_effort_and_captures.csv
-  result="$(./src/query_weekly_resume_effort_and_captures tests/data_tests/cleaned_effort_by_zone.csv tests/data_tests/cleaned_captures_by_zone.csv tests/data_tests/tmp_and_real_dates.csv)"
+  result="$(./src/query_weekly_summary_effort_and_captures tests/data_tests/cleaned_effort_by_zone.csv tests/data_tests/cleaned_captures_by_zone.csv tests/data_tests/tmp_and_real_dates.csv)"
   [ "$output" = "$result" ]
 }
 
-@test "get_weekly_resume" {
-  src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv
+@test "get_weekly_summary" {
+  src/get_weekly_summary tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv
   result="$(diff \
     tests/data_tests/resumen_semanal_30AGO2020.csv \
     tests/data_tests/weekly_resume_IG_POSICION_TRAMPAS_30AGO2020.csv | wc -l)"
@@ -44,7 +44,7 @@
 }
 
 @test "get_weekly_resume_without_captures" {
-  src/get_weekly_resume tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
+  src/get_weekly_summary tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
   result="$(diff \
     tests/data_tests/resumen_semanal_30AGO2020_sin_capturas.csv \
     tests/data_tests/weekly_resume_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc -l)"
