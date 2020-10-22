@@ -21,5 +21,5 @@ def assert_equal_file(file_new, file_test):
 
 
 def clean_files():
-    bash_command = f"rm -f IG_POSICION_TRAMPAS_*.csv"
+    bash_command = f"rm --force IG_POSICION_TRAMPAS_*.csv"
     subprocess.getoutput(bash_command)

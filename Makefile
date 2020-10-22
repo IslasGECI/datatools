@@ -21,3 +21,4 @@ clean:
 	rm --force *.tmp
 	rm --force *.csv
 	rm --recursive --force tests/**/__pycache__
+	rm --force tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
