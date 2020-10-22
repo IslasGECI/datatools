@@ -1,10 +1,5 @@
 #!/usr/bin/env bats
 
-@test "una oración" {
-  run cat tests/data_tests/saludo.txt
-  [ "$output" = '"hola mundo" adios' ]
-}
-
 @test "change_header" {
   run cat tests/data_tests/tmp_header_IG_GATOS_30AGO2020.csv
   result="$(./src/change_header tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv)"
@@ -39,7 +34,7 @@
   src/get_weekly_summary tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv
   result="$(diff \
     tests/data_tests/resumen_semanal_30AGO2020.csv \
-    tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020.csv | wc -l)"
+    tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020.csv | wc --lines)"
   [ "$result" -eq 0 ]
 }
 
@@ -47,6 +42,6 @@
   src/get_weekly_summary tests/data_tests/IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
   result="$(diff \
     tests/data_tests/resumen_semanal_30AGO2020_sin_capturas.csv \
-    tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc -l)"
+    tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc --lines)"
   [ "$result" -eq 0 ]
 }
