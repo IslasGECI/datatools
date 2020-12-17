@@ -19,9 +19,13 @@ latitude = []
 longitude = []
 
 for x, y in zip(data.Coordenada_Este, data.Coordenada_Norte):
-    lat, lon = utm.to_latlon(x, y, int(utm_zone[:-1]), utm_zone[-1])
-    latitude.append(lat)
-    longitude.append(lon)
+    if (x == np.nan) or (y == np.nan):
+        latitude.append(np.nan)
+        longitude.append(np.nan)  
+    else:
+        lat, lon = utm.to_latlon(x, y, int(utm_zone[:-1]), utm_zone[-1])
+        latitude.append(lat)
+        longitude.append(lon)
 data["Latitud"] = latitude
 data["Longitud"] = longitude
 data.to_csv(output_table, index=False)
