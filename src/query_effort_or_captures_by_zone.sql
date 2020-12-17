@@ -6,6 +6,6 @@ SELECT
     ELSE SUBSTR(ID,4,2)
   END Zona,
   COUNT(*) AS '${effort_or_captures}'
-FROM ${table_name}
+FROM '${table_name}'
 WHERE ${conditional}
 GROUP BY Zona

@@ -10,8 +10,8 @@ FROM
     e.Zona,
     e.Esfuerzo,
     c.Capturas
-  FROM ${effort_table} AS e
-  LEFT OUTER JOIN ${captures_table} AS c
+  FROM '${effort_table}' AS e
+  LEFT OUTER JOIN '${captures_table}' AS c
   ON e.Fecha = c.Fecha AND e.Zona = c.Zona) AS jt
-INNER JOIN ${real_and_tmp_dates_table} AS d
+INNER JOIN '${real_and_tmp_dates_table}' AS d
 ON d.tmp_date = jt.tmp_Fecha
