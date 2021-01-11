@@ -6,6 +6,7 @@ from cli_paths import path_files
 
 import pandas as pd
 import utm
+import numpy as np
 
 paths = path_files()
 
@@ -14,7 +15,7 @@ utm_zone = paths.input[1][0]
 output_table = paths.output[0][0]
 
 data = pd.read_csv(data_path)
-
+data = data.fillna(np.nan)
 latitude = []
 longitude = []
 
