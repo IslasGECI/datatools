@@ -7,7 +7,10 @@ tests: install
 .PHONY: clean install format tests
 
 format:
-	black --check --line-length 100 tests
+	black --check --line-length 100 tests && \
+	R -e "library(styler)" \
+	  -e "style_dir('src')" \
+	  -e "style_dir('tests/testthat')"
 
 # Instala estas herramientas miscelaneas
 install:
