@@ -45,3 +45,9 @@
     tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc --lines)"
   [ "$result" -eq 0 ]
 }
+
+@test "pivot_table" {
+  run ./src/pivot_table tests/data_tests/input_pivot_table.csv
+  result="$(cat tests/data_tests/output_pivot_table.csv)"
+  [ "$output" = "$result" ]
+}
