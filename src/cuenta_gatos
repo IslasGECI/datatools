@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-#
-# Cuenta las noches trampas activas (A) y las capturas de gatos (X)
-input_file=${1}
-for trap_state in A X; do
-csvcut --not-columns 1:4 ${input_file} \
-  | grep --only-matching ${trap_state} \
-  | wc --lines
-done
