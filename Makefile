@@ -6,16 +6,12 @@ all: check coverage mutants
 	clean \
 	coverage \
 	format \
+	linter \
 	mutants \
 	setup \
 	tests
 
-check: check_bash check_sql 
-
-check_sql:
-	sqlfluff lint src/*.sql
-
-check_bash:
+check:
 	shellcheck --shell=bash src/change_header.sh
 
 clean:
@@ -30,6 +26,9 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
+
+linter:
+	sqlfluff lint src/*.sql
 
 mutants:
 	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
