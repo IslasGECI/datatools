@@ -6,8 +6,8 @@ all: tests
 	clean \
 	coverage \
 	format \
-	install \
 	mutants \
+	setup \
 	tests
 
 check:
@@ -25,15 +25,15 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
-	sqlfluff fix src/*.sql
-
-install:
+	
+mutants:
+	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
+	
+setup:
 	chmod +x ./src/*
 	mkdir --parents /usr/local/bin
 	cp ./src/* /usr/local/bin
-
-mutants:
-	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
+	sqlfluff fix src/*.sql
 
 tests:
 	bats tests/bats_test/test_weekly_resume.sh
