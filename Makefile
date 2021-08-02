@@ -10,7 +10,9 @@ all: check coverage mutants
 	setup \
 	tests
 
-check:
+check: check_bash check_sql 
+
+check_sql:
 	sqlfluff lint src/*.sql
 
 check_bash:
