@@ -7,6 +7,7 @@ all: tests
 	coverage \
 	format \
 	install \
+	mutants \
 	tests
 
 check:
@@ -29,6 +30,9 @@ install:
 	chmod +x ./src/*
 	mkdir --parents /usr/local/bin
 	cp ./src/* /usr/local/bin
+
+mutants:
+	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
 
 tests:
 	bats tests/bats_test/test_weekly_resume.sh
