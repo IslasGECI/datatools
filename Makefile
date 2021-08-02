@@ -2,6 +2,7 @@ all: tests
 
 .PHONY:
 	all \
+	check \
 	clean \
 	format \
 	install \
