@@ -1,16 +1,17 @@
 SELECT
-d.real_date AS Fecha,
-jt.Zona, jt.Esfuerzo,
-  CASE
-    WHEN jt.Capturas IS NULL THEN '0' ELSE Capturas
-  END Capturas
+    d.real_date AS fecha,
+    jt.zona,
+    jt.esfuerzo,
+    CASE
+         WHEN jt.capturas IS NULL THEN '0' ELSE capturas
+    END AS capturas
 FROM
-  (SELECT
-    e.Fecha AS tmp_Fecha,
-    e.Zona,
-    e.Esfuerzo,
-    c.Capturas
-  FROM '${effort_table}' AS e
+    (SELECT
+        e.fecha AS tmp_fecha,
+        e.zona,
+        e.esfuerzo,
+        c.capturas
+    FROM '${effort_table}' AS e
   LEFT OUTER JOIN '${captures_table}' AS c
   ON e.Fecha = c.Fecha AND e.Zona = c.Zona) AS jt
 INNER JOIN '${real_and_tmp_dates_table}' AS d
