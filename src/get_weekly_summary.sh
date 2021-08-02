@@ -10,25 +10,25 @@ tmp_and_real_dates_file="${path_file}/dates_${name_file}.csv"
 weekly_resume="${path_file}/weekly_summary_${name_file}.csv"
 data_file_tmp_header="${path_file}/${name_file}_tmp_header.csv"
 
-src/change_header \
+src/change_header.sh \
   ${data_file} \
   > ${data_file_tmp_header}
 
-src/get_effort_or_captures_by_zone \
+src/get_effort_or_captures_by_zone.sh \
   ${data_file_tmp_header} Esfuerzo \
-  | src/remove_rows_with_specific_text \
+  | src/remove_rows_with_specific_text.sh \
   > ${effort_file}
 
-src/get_effort_or_captures_by_zone \
+src/get_effort_or_captures_by_zone.sh \
   ${data_file_tmp_header} Capturas \
-  | src/remove_rows_with_specific_text \
+  | src/remove_rows_with_specific_text.sh \
   > ${captures_file}
 
 src/make_dates_header.R \
   --data ${data_file} \
   > ${tmp_and_real_dates_file}
 
-src/query_weekly_summary_effort_and_captures \
+src/query_weekly_summary_effort_and_captures.sh \
   ${effort_file} \
   ${captures_file} \
   ${tmp_and_real_dates_file} \
