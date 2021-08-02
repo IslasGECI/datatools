@@ -12,6 +12,8 @@ all: check coverage mutants
 
 check:
 	sqlfluff lint src/*.sql
+
+check_bash:
 	shellcheck --shell=bash src/change_header.sh
 
 clean:
