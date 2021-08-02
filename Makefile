@@ -1,9 +1,15 @@
+all: tests
+
+define checkDirectories
+if [ ! -d $(@D) ]; then mkdir --parents $(@D); fi
+endef
+
+
+.PHONY: clean install format tests
+
 tests: install
 	bats tests/bats_test/test_weekly_resume.sh
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
-
-# Enlista phonies
-.PHONY: clean install format tests
 
 format:
 	R -e "library(styler)" \
@@ -12,11 +18,10 @@ format:
 
 # Instala estas herramientas miscelaneas
 install:
-	# Copia ejecutables
+	chmod +x ./src/*
 	mkdir --parents /usr/local/bin
 	cp ./src/* /usr/local/bin
-	chmod +x /usr/local/bin/*
-	export PATH="$${PATH}:/usr/local/bin"
+
 
 clean:
 	rm --force *.tmp
