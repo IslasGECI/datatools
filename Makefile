@@ -3,6 +3,7 @@ all: tests
 .PHONY:
 	all \
 	clean \
+	coverage \
 	format \
 	install \
 	tests
@@ -15,6 +16,8 @@ clean:
 	rm --force *.csv
 	rm --force *.tmp
 	rm --force tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
+
+coverage: install tests
 
 format:
 	R -e "library(styler)" \
