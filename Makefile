@@ -7,6 +7,9 @@ all: tests
 	install \
 	tests
 
+check:
+	sqlfluff lint src/*.sql
+
 clean:
 	rm --force --recursive tests/**/__pycache__
 	rm --force *.csv
