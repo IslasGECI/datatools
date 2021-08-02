@@ -12,6 +12,7 @@ all: check coverage mutants
 
 check:
 	sqlfluff lint src/*.sql
+	shellcheck --shell=bash src/change_header.sh
 
 clean:
 	rm --force --recursive tests/**/__pycache__
