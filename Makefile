@@ -1,4 +1,4 @@
-all: tests
+all: check coverage mutants
 
 .PHONY: \
 	all \
@@ -6,8 +6,8 @@ all: tests
 	clean \
 	coverage \
 	format \
-	install \
 	mutants \
+	setup \
 	tests
 
 check:
@@ -19,21 +19,21 @@ clean:
 	rm --force *.tmp
 	rm --force tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv
 
-coverage: install tests
+coverage: setup tests
 
 format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
-	sqlfluff fix src/*.sql
-
-install:
-	chmod +x ./src/*
-	mkdir --parents /usr/local/bin
-	cp ./src/* /usr/local/bin
 
 mutants:
 	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
+
+setup:
+	chmod +x ./src/*
+	mkdir --parents /usr/local/bin
+	cp ./src/* /usr/local/bin
+	sqlfluff fix src/*.sql
 
 tests:
 	bats tests/bats_test/test_weekly_resume.sh
