@@ -1,4 +1,4 @@
-all: tests
+all: check coverage mutants
 
 .PHONY: \
 	all \
@@ -25,10 +25,10 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
-	
+
 mutants:
 	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
-	
+
 setup:
 	chmod +x ./src/*
 	mkdir --parents /usr/local/bin
