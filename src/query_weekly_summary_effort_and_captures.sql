@@ -4,7 +4,7 @@ SELECT
     jt.Esfuerzo,
     CASE
         WHEN jt.Capturas IS NULL THEN '0' ELSE Capturas
-    END Capturas
+    END AS Capturas
 FROM
     (SELECT
         e.Fecha AS tmp_Fecha,
