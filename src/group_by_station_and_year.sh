@@ -10,7 +10,7 @@ for station in Norte Pista Sur Bosque; do
       FROM ${table_name}
       WHERE Estacion = '${station}' AND
       Date LIKE '%${year}'
-    " ${table_name}.csv > estacion_meteorologica_${station}_IG_${year}.csv
+    " "${table_name}".csv > estacion_meteorologica_"${station}"_IG_"${year}".csv
   done
 done
 ./remove_empty_files
