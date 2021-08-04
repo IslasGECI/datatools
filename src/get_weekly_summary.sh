@@ -15,14 +15,16 @@ src/change_header.sh \
   > "${data_file_tmp_header}"
 
 src/get_effort_or_captures_by_zone.sh \
-  "${data_file_tmp_header}" Esfuerzo \
-  | src/remove_rows_with_specific_text.sh \
+  "${data_file_tmp_header}" Esfuerzo > tests/data_tests/tmp_file1.csv
+src/remove_rows_with_specific_text.sh tests/data_tests/tmp_file1.csv \
   > "${effort_file}"
+rm tests/data_tests/tmp_file1.csv
 
 src/get_effort_or_captures_by_zone.sh \
-  "${data_file_tmp_header}" Capturas \
-  | src/remove_rows_with_specific_text.sh \
+  "${data_file_tmp_header}" Capturas > tests/data_tests/tmp_file2.csv
+src/remove_rows_with_specific_text.sh tests/data_tests/tmp_file2.csv \
   > "${captures_file}"
+rm tests/data_tests/tmp_file2.csv
 
 src/make_dates_header.R \
   --data "${data_file}" \
