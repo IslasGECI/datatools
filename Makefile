@@ -12,7 +12,7 @@ all: check coverage mutants
 	tests
 
 check:
-	shellcheck --shell=bash src/change_header.sh
+	shellcheck --shell=bash src/*.sh
 
 clean:
 	rm --force --recursive tests/**/__pycache__
