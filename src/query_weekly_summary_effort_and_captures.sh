@@ -4,11 +4,14 @@
 effort_name_file=${1}
 captures_name_file=${2}
 real_and_tmp_dates_file=${3}
-export effort_table=$(basename "${effort_name_file}" .csv)
-export captures_table=$(basename "${captures_name_file}" .csv)
-export real_and_tmp_dates_table=$(basename "${real_and_tmp_dates_file}" .csv)
+effort_table=$(basename "${effort_name_file}" .csv)
+captures_table=$(basename "${captures_name_file}" .csv)
+real_and_tmp_dates_table=$(basename "${real_and_tmp_dates_file}" .csv)
+export effort_table
+export captures_table
+export real_and_tmp_dates_table
 src_path=$(dirname "${0}")
-query=$(envsubst < ${src_path}/query_weekly_summary_effort_and_captures.sql)
+query=$(envsubst < "${src_path}"/query_weekly_summary_effort_and_captures.sql)
 
 csvsql --snifflimit 0 --no-inference --blanks --query "${query}" \
-  ${effort_name_file} ${captures_name_file} ${real_and_tmp_dates_file}
+  "${effort_name_file}" "${captures_name_file}" "${real_and_tmp_dates_file}"
