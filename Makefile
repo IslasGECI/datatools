@@ -39,6 +39,10 @@ setup:
 	mkdir --parents /usr/local/bin
 	cp ./src/* /usr/local/bin
 
-tests:
+tests: tests_bash tests_r
+
+tests_bash:
 	bats tests/bats_test/test_weekly_resume.sh
+
+tests_r:
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
