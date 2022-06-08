@@ -9,7 +9,9 @@ all: check coverage mutants
 	linter \
 	mutants \
 	setup \
-	tests
+	tests \
+	tests_bash \
+	tests_r
 
 check:
 	shellcheck --shell=bash src/*.sh
