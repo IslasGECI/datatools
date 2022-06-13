@@ -45,3 +45,8 @@
     tests/data_tests/weekly_summary_IG_POSICION_TRAMPAS_30AGO2020_sin_capturas.csv | wc --lines)"
   [ "$result" -eq 0 ]
 }
+@test "get_weekly_effort_captures_socorro" {
+  src/get_weekly_summary_socorro.sh tests/data_tests/raw_format_date_cat_socorro_island.csv > weekly_summary_socorro.csv
+  result="$(md5sum weekly_summary_socorro.csv | cut -d " " -f 1)" 
+  [ "$result" = "df4a333e0d1129a3eadde3bfb81dd1ed" ]
+}
