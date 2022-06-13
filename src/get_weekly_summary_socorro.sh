@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-raw_dates_format=weekly_summary_abril_1_format.csv
-cat $raw_dates_format
+raw_dates_format=${1}
+csvcut -c 2-12 $raw_dates_format
