@@ -27,4 +27,9 @@ test_that("Prueba cambio de formato en fecha",{
   expected_date <- "06/Ene/2022"
   obtained_date <- transform_date_format("2022-01-06")
   expect_equal(expected_date,obtained_date)
+  
+  raw_dates <- c("2022-05-01","2022-05-02","2022-01-06")
+  obtained_dates <- transform_date_format(raw_dates)
+  expected_dates <- c("01/May/2022","02/May/2022","06/Ene/2022")
+  expect_equal(expected_dates,obtained_dates)
 })
