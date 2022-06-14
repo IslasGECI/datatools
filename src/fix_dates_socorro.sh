@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-cat tests/data_tests/correct_dates.bak
+Rscript src/fix_dates_socorro.R 

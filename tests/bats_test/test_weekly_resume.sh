@@ -53,7 +53,7 @@
 }
 
 @test "fix_dates_socorro" {
-  src/fix_dates_socorro.sh tests/data_tests/wrong_dates.csv > tests/data_tests/correct_dates.csv
+  src/fix_dates_socorro.sh tests/data_tests/wrong_dates.csv 
   obtained_hash="$(md5sum tests/data_tests/correct_dates.csv | cut -d " " -f 1)"
   [ "$obtained_hash" = "2f202a79037b0a5ccde7b46b1c44fdff" ]
 }
