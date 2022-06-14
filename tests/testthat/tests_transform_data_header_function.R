@@ -16,3 +16,9 @@ output_tests <- data.frame(
 test_that("Adquiere fechas desde encabezado de base de datos", {
   expect_equal(transform_data_header(data_tests), output_tests)
 })
+
+test_that("Prueba cambio de formato en fecha",{
+  expected_date <- "01/May/2022"
+  obtained_date <- transform_date_format("2022-05-01")
+  expect_equal(expected_date,obtained_date)
+})
