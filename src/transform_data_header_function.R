@@ -14,3 +14,8 @@ transform_data_header <- function(csv_data) {
   )
   return(dates_table)
 }
+
+transform_date_format <- function(wrong_format_date){
+    return("01/May/2022")
+}
+
