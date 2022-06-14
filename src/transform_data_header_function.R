@@ -1,4 +1,5 @@
 library(data.table)
+library(lubridate)
 
 transform_data_header <- function(csv_data) {
   dates <- names(csv_data)
@@ -16,6 +17,7 @@ transform_data_header <- function(csv_data) {
 }
 
 transform_date_format <- function(wrong_format_date){
-    return("01/May/2022")
+  date <- as.Date(wrong_format_date, "%Y-%m-%d") %>% format("%d/%b/%Y")
+  return(date) 
 }
 
