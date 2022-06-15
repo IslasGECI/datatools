@@ -33,3 +33,9 @@ fix_date_format_in_column_names <- function(table_with_wrong_column_names) {
   colnames(date_table) <- correct_date_columnames
   return(date_table)
 }
+
+f <- function(input) {
+  column_names <- c("ID", "# Trampa", "Zona", "Responsable", "01/May/2022", "02/May/2022","03/May/2022","04/May/2022","05/May/2022","06/May/2022","07/May/2022")
+  colnames(input) <- column_names
+  return(input) 
+}
