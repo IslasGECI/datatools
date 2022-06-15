@@ -25,7 +25,7 @@ transform_date_format <- function(wrong_format_date) {
 }
 
 f <- function(input) {
-  file <- "tests/data_tests/correct_dates.bak"
+  file <- "tests/data_tests/correct_date.bak"
   output <- read_csv(file)
   return(output)
 }
