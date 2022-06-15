@@ -26,6 +26,9 @@ transform_date_format <- function(wrong_format_date) {
 
 f <- function(input) {
   file <- "tests/data_tests/wrong_date.csv"
-  output <- read_csv(file)
-  return(output)
+  table <- read_csv(file)
+  wrong_columnames <- colnames(table)
+  correct_columnames <- transform_date_format(wrong_columnames)
+  colnames(table) <- correct_columnames
+  return(table)
 }
