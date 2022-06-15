@@ -37,11 +37,13 @@ test_that("Prueba cambio de formato en fecha", {
   expected_dates <- c("01/May/2022", "02/May/2022", "06/Ene/2022")
   expect_equal(expected_dates, obtained_dates)
 })
+
 test_that("Cambia formato de fecha de una única columna", {
   setwd("/workdir")
-  file <- "tests/data_tests/wrong_date.csv"
-  input <- read_csv(file)
-  obtained_columnames <- colnames(f(input))
+  filename <- "tests/data_tests/wrong_date.csv"
+  table_with_wrong_column_names <- read_csv(filename)
+  table_with_corret_column_names <- fix_date_format_in_column_names(table_with_wrong_column_names)
+  obtained_columnames <- colnames(table_with_corret_column_names)
   expected_columnames <- "01/May/2022"
   expect_equal(expected_columnames, obtained_columnames)
 })
