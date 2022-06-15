@@ -34,11 +34,19 @@ fix_date_format_in_column_names <- function(table_with_wrong_column_names) {
   return(date_table)
 }
 
+get_fixed_date_column_names <- function(table_with_wrong_column_names) {
+  ind_first_date_column <- 5 
+  ind_last_date_column <- ncol(table_with_wrong_column_names)
+  date_table <- table_with_wrong_column_names[, ind_first_date_column:ind_last_date_column]
+  wrong_date_columnames <- colnames(date_table)
+  correct_date_columnames <- transform_date_format(wrong_date_columnames)
+  return(correct_date_columnames)
+}
+
 f <- function(input) {
   ind_first_date_column <- 5 
   ind_last_date_column <- ncol(input)
-  table_with_correct_dates <- fix_date_format_in_column_names(input)
-  table_column_names <- colnames(table_with_correct_dates)
+  table_column_names <- get_fixed_date_column_names(input)
   input_column_names <- colnames(input)
   input_column_names[ind_first_date_column:ind_last_date_column] <- table_column_names
   colnames(input) <- input_column_names
