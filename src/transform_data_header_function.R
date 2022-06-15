@@ -26,7 +26,10 @@ transform_date_format <- function(wrong_format_date) {
 
 fix_date_format_in_column_names <- function(table_with_wrong_column_names) {
   wrong_columnames <- colnames(table_with_wrong_column_names)
-  correct_columnames <- transform_date_format(wrong_columnames)
-  colnames(table_with_wrong_column_names) <- correct_columnames
-  return(table_with_wrong_column_names)
+  non_date_columnames <- wrong_columnames[1:4]
+  date_columnames <- wrong_columnames[5:ncol(table_with_wrong_column_names)]
+  correct_columnames <- transform_date_format(date_columnames)
+  date_table <- table_with_wrong_column_names[, 5:ncol(table_with_wrong_column_names)]
+  colnames(date_table) <- correct_columnames
+  return(date_table)
 }
