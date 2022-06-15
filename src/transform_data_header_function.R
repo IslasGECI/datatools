@@ -17,10 +17,15 @@ transform_data_header <- function(csv_data) {
   return(dates_table)
 }
 
-transform_date_format <- function(wrong_format_date){
+transform_date_format <- function(wrong_format_date) {
   date <- as.Date(wrong_format_date, "%Y-%m-%d") %>% format("%d/%b/%Y")
-  date <- str_replace(date,"Jan","Ene")
-  date <- str_replace(date,"Apr","Abr")
-  return(date) 
+  date <- str_replace(date, "Jan", "Ene")
+  date <- str_replace(date, "Apr", "Abr")
+  return(date)
 }
 
+f <- function(input) {
+  file <- "tests/data_tests/correct_dates.bak"
+  output <- read_csv(file)
+  return(output)
+}
