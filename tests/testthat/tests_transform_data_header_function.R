@@ -1,4 +1,5 @@
 library(testthat)
+library(tidyverse)
 
 source("../../src/transform_data_header_function.R")
 file_tests <- "../data_tests/IG_POSICION_TRAMPAS_30AGO2020.csv"
@@ -36,6 +37,11 @@ test_that("Prueba cambio de formato en fecha", {
   expected_dates <- c("01/May/2022", "02/May/2022", "06/Ene/2022")
   expect_equal(expected_dates, obtained_dates)
 })
-test_that("Lee header con fechas", {
-  file_wrong_format <- "tests/data_tests/wrong_dates.csv"
+test_that("Cambia formato de fecha de una única columna", {
+  setwd("/workdir")
+  file <- "tests/data_tests/wrong_date.csv"
+  input <- read_csv(file)
+  obtained_columnames <- colnames(f(input))
+  expected_columnames <- "01/May/2022"
+  expect_equal(expected_columnames, obtained_columnames)
 })
