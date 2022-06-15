@@ -44,6 +44,6 @@ test_that("Cambia formato de fecha de una única columna", {
   table_with_wrong_column_names <- read_csv(filename)
   table_with_corret_column_names <- fix_date_format_in_column_names(table_with_wrong_column_names)
   obtained_columnames <- colnames(table_with_corret_column_names)
-  expected_columnames <- "01/May/2022"
+  expected_columnames <- "01/May/2022,02/May/2022"
   expect_equal(expected_columnames, obtained_columnames)
 })
