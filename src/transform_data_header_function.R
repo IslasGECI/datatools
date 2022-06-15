@@ -35,7 +35,12 @@ fix_date_format_in_column_names <- function(table_with_wrong_column_names) {
 }
 
 f <- function(input) {
-  column_names <- c("ID", "# Trampa", "Zona", "Responsable", "01/May/2022", "02/May/2022","03/May/2022","04/May/2022","05/May/2022","06/May/2022","07/May/2022")
-  colnames(input) <- column_names
+  ind_first_date_column <- 5 
+  ind_last_date_column <- ncol(input)
+  table_with_correct_dates <- fix_date_format_in_column_names(input)
+  table_column_names <- colnames(table_with_correct_dates)
+  input_column_names <- colnames(input)
+  input_column_names[ind_first_date_column:ind_last_date_column] <- table_column_names
+  colnames(input) <- input_column_names
   return(input) 
 }
