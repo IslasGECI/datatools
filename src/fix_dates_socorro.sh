@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-Rscript src/fix_dates_socorro.R --data=${1}
+Rscript src/fix_dates_socorro.R --data="${1}"

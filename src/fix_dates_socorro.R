@@ -9,7 +9,7 @@ source("src/transform_data_header_function.R")
 option_list <- list(
   make_option(
     c("-d", "--data"),
-    default ="tests/data_tests/wrong_dates.csv",
+    default = "tests/data_tests/wrong_dates.csv",
     help = "nombre del primer archivo de entrada",
     metavar = "character",
     type = "character"

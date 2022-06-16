@@ -45,6 +45,6 @@ test_that("Concatena columnas con y sin fecha", {
   table_with_wrong_column_names <- read_csv(filename)
   table_with_corret_column_names <- fix_date_format_in_column_names(table_with_wrong_column_names)
   obtained_columnames <- colnames(table_with_corret_column_names)
-  expected_columnames <- c("ID", "# Trampa", "Zona", "Responsable", "01/May/2022", "02/May/2022","03/May/2022","04/May/2022","05/May/2022","06/May/2022","07/May/2022")
+  expected_columnames <- c("ID", "# Trampa", "Zona", "Responsable", "01/May/2022", "02/May/2022", "03/May/2022", "04/May/2022", "05/May/2022", "06/May/2022", "07/May/2022")
   expect_equal(expected_columnames, obtained_columnames)
 })

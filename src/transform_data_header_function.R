@@ -43,5 +43,5 @@ fix_date_format_in_column_names <- function(input) {
   input_column_names <- colnames(input)
   input_column_names[ind[["first_date_column"]]:ind[["last_date_column"]]] <- table_column_names
   colnames(input) <- input_column_names
-  return(input) 
+  return(input)
 }
