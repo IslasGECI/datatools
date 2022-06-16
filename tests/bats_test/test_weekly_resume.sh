@@ -54,7 +54,6 @@
 }
 
 @test "get_weekly_effort_captures_socorro" {
-    skip
   src/get_weekly_summary_socorro.sh tests/data_tests/raw_format_date_cat_socorro_island.csv > weekly_summary_socorro.csv
   result="$(md5sum weekly_summary_socorro.csv | cut -d " " -f 1)"
   [ "$result" = "df4a333e0d1129a3eadde3bfb81dd1ed" ]
@@ -63,7 +62,7 @@
 @test "fix_dates_socorro" {
     rm -f tests/data_tests/correct_dates.csv
     file_wrong_format="tests/data_tests/wrong_dates.csv"
-    src/fix_dates_socorro.sh $file_wrong_format
+    src/fix_dates_socorro.sh $file_wrong_format > "tests/data_tests/correct_dates.csv"
     obtained_hash="$(md5sum tests/data_tests/correct_dates.csv | cut -d " " -f 1)"
     [ "$obtained_hash" = "2f202a79037b0a5ccde7b46b1c44fdff" ]
 }
