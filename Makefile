@@ -28,7 +28,6 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
-	sqlfluff fix src/*.sql
 
 linter:
 	sqlfluff lint src/*.sql

@@ -1,4 +1,6 @@
 library(data.table)
+library(lubridate)
+library(stringr)
 
 transform_data_header <- function(csv_data) {
   dates <- names(csv_data)
@@ -13,4 +15,33 @@ transform_data_header <- function(csv_data) {
     "real_date" = real_date
   )
   return(dates_table)
+}
+
+transform_date_format <- function(wrong_format_date) {
+  date <- as.Date(wrong_format_date, "%Y-%m-%d") %>% format("%d/%b/%Y")
+  date <- str_replace(date, "Jan", "Ene")
+  date <- str_replace(date, "Apr", "Abr")
+  return(date)
+}
+
+get_indices <- function(table_with_wrong_column_names) {
+  ind <- list("first_date_column" = 5, "last_date_column" = ncol(table_with_wrong_column_names))
+  return(ind)
+}
+
+get_fixed_date_column_names <- function(table_with_wrong_column_names) {
+  ind <- get_indices(table_with_wrong_column_names)
+  date_table <- table_with_wrong_column_names[, ind[["first_date_column"]]:ind[["last_date_column"]]]
+  wrong_date_columnames <- colnames(date_table)
+  correct_date_columnames <- transform_date_format(wrong_date_columnames)
+  return(correct_date_columnames)
+}
+
+fix_date_format_in_column_names <- function(input) {
+  ind <- get_indices(input)
+  table_column_names <- get_fixed_date_column_names(input)
+  input_column_names <- colnames(input)
+  input_column_names[ind[["first_date_column"]]:ind[["last_date_column"]]] <- table_column_names
+  colnames(input) <- input_column_names
+  return(input)
 }
