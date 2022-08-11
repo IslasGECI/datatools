@@ -20,8 +20,8 @@ Los datos de Socorro los mandan mensualmente; un archivo `*.xlsx` por mes dividi
 
 Los pasos a seguir para curar los datos son los siguientes:
 1. Subimos el archivo excell
-2. Convertimos hoja por hoja a csv
-3. Utilizamos `get_weekly_summary_socorro` en cada uno del los archivos csv.
+2. Convertimos hoja por hoja a csv usando `get_weekly_summary_socorro_from_excell.py` en cada uno del los archivos `*.xlsx`. Esto genera una serie de archivos `week_1.csv`, `week_2.csv`...
+3. Agregamos los archivos `week_*` al _tabular data package_
 
 ## License
 
