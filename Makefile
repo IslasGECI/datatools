@@ -15,6 +15,15 @@ all: check coverage mutants
 
 check:
 	shellcheck --shell=bash src/*.sh
+	R -e "library(styler)" \
+	  -e "resumen <- style_dir('src')" \
+	  -e "resumen <- rbind(resumen, style_dir('tests/testthat'))" \
+	  -e "any(resumen[[2]])" \
+	  | grep FALSE
+	black --check --line-length 100 src
+	black --check --line-length 100 tests
+	flake8 --max-line-length 100 src
+	flake8 --max-line-length 100 tests
 
 clean:
 	rm --force --recursive tests/**/__pycache__
@@ -28,6 +37,8 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('tests/testthat')"
+	black --line-length 100 src
+	black --line-length 100 tests
 
 linter:
 	sqlfluff lint src/*.sql
