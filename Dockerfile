@@ -5,5 +5,6 @@ RUN apt update && apt install --yes \
 RUN R -e "install.packages(c('data.table', 'devtools', 'optparse', 'reshape2'), repos = 'http://cran.rstudio.com')"
 RUN pip install \
     black \
+    flake8 \
     sqlfluff \
     typer
