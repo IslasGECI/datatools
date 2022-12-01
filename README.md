@@ -18,10 +18,14 @@ Por ejemplo para obtener el resumen de los datos del 25 de julio del 2021 correm
 ### Isla Socorro
 Los datos de Socorro los mandan mensualmente; un archivo `*.xlsx` por mes dividido en una hoja por semanas. 
 
+
+
 Los pasos a seguir para curar los datos son los siguientes:
-1. Subimos el archivo excell
-2. Convertimos hoja por hoja a csv usando `get_weekly_summary_socorro_from_excell.py` en cada uno del los archivos `*.xlsx`. Esto genera una serie de archivos `week_1.csv`, `week_2.csv`...
-3. Agregamos los archivos `week_*` al _tabular data package_
+1. Inicializamos la imagen con `docker-compose run islasgeci`
+2. Subimos el archivo excell 
+3. Convertimos hoja por hoja a csv usando `get_weekly_summary_socorro_from_excell.py` en cada uno del los archivos `*.xlsx`. Esto genera una serie de archivos `week_1.csv`, `week_2.csv`...
+4. Agregamos los archivos `week_*` al _tabular data package_ al archivo `esfuerzo_capturas_gatos_socorro/esfuerzos_capturas_semanales_gatos_socorro.csv`
+5. Sumamos los esfuerzos mensuales y agregamos a `esfuerzo_capturas_gatos_socorro/esfuerzos_capturas_mensuales_gatos_socorro.csv`
 
 ## License
 
