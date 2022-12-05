@@ -6,6 +6,8 @@ all: check coverage mutants
 	clean \
 	coverage \
 	format \
+	init \
+	install \
 	linter \
 	mutants \
 	setup \
@@ -40,13 +42,21 @@ format:
 	black --line-length 100 src
 	black --line-length 100 tests
 
+init: setup tests
+
+install: 
+	cd robinson_data && R -e "devtools::document()" && \
+	R CMD build . && \
+	R CMD check robinson.data_0.1.0.tar.gz && \
+	R CMD INSTALL robinson.data_0.1.0.tar.gz
+
 linter:
 	sqlfluff lint src/*.sql
 
 mutants:
 	@echo "🏹😞 No mutation testing on Bash 👾🎉👾"
 
-setup:
+setup: install
 	chmod +x ./src/*
 	mkdir --parents /usr/local/bin
 	cp ./src/* /usr/local/bin
@@ -58,3 +68,4 @@ tests_bash:
 
 tests_r:
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
+	cd robinson_data && R -e "devtools::test()"

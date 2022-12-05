@@ -1,0 +1,11 @@
+File,RelativePath,Folder,DateTime,ImageQuality,DeleteFlag,Coati,Highlight,Reviewed,CoatiCount,MDEmpty,MDAnimal,Rabbit,Cat,Collar
+RCNX0001.JPG,CAM 12\100RECNX,2022.08, 2022-05-31 17:15:55,Ok,false,false,false,true,0,false,false,false,false,false,
+RCNX0002.JPG,CAM 12\100RECNX,2022.08, 2022-05-31 17:15:58,Ok,false,false,false,true,0,false,false,false,false,false,
+RCNX0003.JPG,CAM 12\100RECNX,2022.08, 2022-05-31 17:16:01,Ok,false,false,false,true,0,false,false,false,false,false,
+RCNX0056.JPG,CAM 10\100RECNX,2022.07,2022-06-01 06:10:00,Ok,false,false,false,true,0,false,true,false,false,false
+RCNX0060.JPG,CAM 10\100RECNX,2022.07,2022-06-01 16:52:41,Ok,false,false,false,true,0,false,false,false,false,false
+RCNX0061.JPG,CAM 10\100RECNX,2022.07,2022-06-02 20:08:48,Ok,false,false,false,true,0,false,true,false,false,false
+RCNX0062.JPG,CAM 10\100RECNX,2022.07,2022-06-02 20:08:51,Ok,false,false,false,true,0,false,false,false,false,false
+RCNX0063.JPG,CAM 10\100RECNX,2022.07,2022-06-02 20:08:54,Dark,false,false,false,true,0,false,true,false,false,false
+RCNX0060.JPG,CAM 10\100RECNX,2022.08,2022-06-01 16:52:41,Ok,false,false,false,true,0,false,false,false,false,false
+RCNX0060.JPG,CAM 10\101RECNX,2022.09,2022-06-01 16:52:41,Ok,false,false,false,true,0,false,false,false,false,false
