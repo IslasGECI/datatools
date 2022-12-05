@@ -1,4 +1,4 @@
-library(tidyverse)
+#' @import readr
 
 are_there_duplicates_by_date_and_file <- function(data) {
   file_and_date <- paste0(data$File, data$DateTime)
