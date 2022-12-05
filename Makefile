@@ -19,6 +19,7 @@ check:
 	shellcheck --shell=bash src/*.sh
 	R -e "library(styler)" \
 	  -e "resumen <- style_dir('src')" \
+	  -e "resumen <- rbind(resumen, style_dir('robinson_data'))" \
 	  -e "resumen <- rbind(resumen, style_dir('tests/testthat'))" \
 	  -e "any(resumen[[2]])" \
 	  | grep FALSE
