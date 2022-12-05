@@ -7,7 +7,7 @@ are_there_duplicates_by_date_and_file <- function(data) {
 }
 
 #' @export
-check_duplicates <- function(path = "../data/raw/robinson_coati_detection_camera_traps/detection_camera_traps.csv") {
+check_duplicates <- function(path = "data/raw/robinson_coati_detection_camera_traps/detection_camera_traps.csv") {
   data <- read_csv(path, show_col_types = FALSE)
   there_is_duplicates <- are_there_duplicates_by_date_and_file(data)
   if (there_is_duplicates) {
