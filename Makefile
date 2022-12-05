@@ -38,6 +38,7 @@ coverage: setup tests
 format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
+	  -e "style_dir('robinson_data')" \
 	  -e "style_dir('tests/testthat')"
 	black --line-length 100 src
 	black --line-length 100 tests
@@ -66,6 +67,8 @@ tests: tests_bash tests_r
 tests_bash:
 	bats tests/bats_test/test_weekly_resume.sh
 
-tests_r:
+tests_r: tests_r_robinson_data
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
+
+tests_r_robinson_data:
 	cd robinson_data && R -e "devtools::test()"
