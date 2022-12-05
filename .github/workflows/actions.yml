@@ -11,14 +11,25 @@ on:
 jobs:
   actions:
     runs-on: ubuntu-latest
+    env:
+      github_sha: ${{ github.sha }}
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen
-      run: docker build --tag islasgeci .
+      run: docker build --tag islasgeci/datatools:latest --tag islasgeci/datatools:${github_sha:0:4} .
     - name: Verifica el formato
       run: docker run islasgeci make check
     - name: Corre pruebas y evalúa cobertura
       run: docker run islasgeci make coverage
     - name: Evalúa resistencia a mutaciones
       run: docker run islasgeci make mutants
+    - name: Docker log-in
+      env:
+        docker_username: ${{ secrets.docker_username }}
+        docker_password: ${{ secrets.docker_password }}
+      run: echo "${docker_password}" | docker login --username "${docker_username}" --password-stdin
+    - name: Upload image to Docker Hub
+      run: docker push islasgeci/datatools:latest
+    - name: Tag image with hash
+      run: docker push islasgeci/datatools:${github_sha:0:4}
