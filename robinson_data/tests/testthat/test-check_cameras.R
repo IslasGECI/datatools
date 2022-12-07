@@ -1,3 +1,4 @@
+library(tidyverse)
 testthat::describe("Check cameras", {
   it("search cameras in list", {
     camaras_id <- c(12, 10, 20, 11, 39, 13)
@@ -6,7 +7,7 @@ testthat::describe("Check cameras", {
     expect_equal(obtained, expected)
   })
   it("search cameras in list", {
-    raw_data <- read_csv("../data/check_cameras_failing.csv", show_col_types = FALSE)
+    raw_bad_data <- read_csv("../data/check_cameras_failing.csv", show_col_types = FALSE)
     expect_error(check_cameras(raw_data), "🚨 The raw data have cameras not listed in 'camera_trap_coordinates.csv'")
   })
 })
