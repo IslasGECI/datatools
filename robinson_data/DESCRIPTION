@@ -10,7 +10,8 @@ Config/testthat/edition: 3
 Description: Check duplicates
 Encoding: UTF-8
 Imports:
-    readr
+    readr,
+    robinson
 LazyData: true
 License: AGPL-3.0-or-later
 Roxygen: list(markdown = TRUE)
