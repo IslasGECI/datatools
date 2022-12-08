@@ -1,4 +1,4 @@
-FROM islasgeci/base:1.0.0
+FROM islasgeci/robinson_code
 COPY . .
 RUN apt update && apt install --yes \
     shellcheck
