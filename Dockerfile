@@ -1,4 +1,5 @@
 FROM islasgeci/robinson_code
+RUN rm -r /workdir
 COPY . .
 RUN apt update && apt install --yes \
     shellcheck
