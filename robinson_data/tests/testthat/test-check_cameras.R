@@ -8,9 +8,9 @@ testthat::describe("Check cameras", {
     expect_equal(obtained, expected)
   })
   it("search cameras in list", {
-    raw_bad_data <- read_csv("../data/check_cameras_failing.csv", show_col_types = FALSE)
-    expect_error(check_cameras(raw_bad_data, camera_coordinates_path), "🚨 The raw data have cameras not listed in 'camera_trap_coordinates.csv'")
-    raw_good_data <- read_csv("../data/check_cameras_passing.csv", show_col_types = FALSE)
-    expect_no_error(check_cameras(raw_good_data, camera_coordinates_path))
+    raw_bad_data_path <- "../data/check_cameras_failing.csv"
+    expect_error(check_cameras(camera_coordinates_path, raw_bad_data_path), "🚨 The raw data have cameras not listed in 'camera_trap_coordinates.csv'")
+    raw_good_data_path <- "../data/check_cameras_passing.csv"
+    expect_no_error(check_cameras(camera_coordinates_path, raw_good_data_path))
   })
 })
