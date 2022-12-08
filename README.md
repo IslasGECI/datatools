@@ -27,6 +27,11 @@ Los pasos a seguir para curar los datos son los siguientes:
 4. Agregamos los archivos `week_*` al _tabular data package_ al archivo `esfuerzo_capturas_gatos_socorro/esfuerzos_capturas_semanales_gatos_socorro.csv`
 5. Sumamos los esfuerzos mensuales y agregamos a `esfuerzo_capturas_gatos_socorro/esfuerzos_capturas_mensuales_gatos_socorro.csv`
 
+
 ## License
 
 [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/)
+
+## Pendientes
+- [ ] La imagen madre en datatools debería ser la base
+- [ ] La prueba en datatools que verifica que las cámaras se encuentren en la lista oficial, no nos dice cuáles cámaras son las que no se encuentran.
