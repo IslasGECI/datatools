@@ -1,16 +1,16 @@
 library(robinson)
 
-search_cameras_in_list <- function(cameras_id) {
-  cameras_coordinates <- readr::read_csv("../data/camera_trap_coordinates.csv", show_col_types = FALSE)
+search_cameras_in_list <- function(cameras_id, camera_coordinates_path) {
+  cameras_coordinates <- readr::read_csv(camera_coordinates_path, show_col_types = FALSE)
   n_camara <- cameras_coordinates$`N camara`
   cameras_id %in% n_camara
 }
 
-check_cameras <- function(raw_data) {
+check_cameras <- function(raw_data = "data/raw/robinson_coati_detection_camera_traps/detection_camera_traps.csv", camera_coordinates_path = "data/raw/robinson_coati_detection_camera_traps/camera_trap_coordinates.csv") {
   relative_path_column <- raw_data$RelativePath
   cameras_id <- robinson::get_id_camera_from_relative_path(relative_path_column)
-  are_there_cameras_not_listed <- any(!search_cameras_in_list(cameras_id))
-  if(are_there_cameras_not_listed) {
+  are_there_cameras_not_listed <- any(!search_cameras_in_list(cameras_id, camera_coordinates_path))
+  if (are_there_cameras_not_listed) {
     stop("🚨 The raw data have cameras not listed in 'camera_trap_coordinates.csv'")
   }
 }
