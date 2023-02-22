@@ -22,4 +22,8 @@ describe("Check column ID_punt", {
     expect_no_error(check_trace_from_id(clean_data))
     expect_error(check_trace_from_id(error_data), "🚨 Rows 5, 7 and 14 have different traces")
   })
+  it("Wrapp function to recieve path", {
+    k9_traces_path <- "../data/registros_rastros_k9_guadalupe.csv"
+    expect_error(check_traces(k9_traces_path), "🚨 Rows 5, 7 and 14 have different traces")
+  })
 })
