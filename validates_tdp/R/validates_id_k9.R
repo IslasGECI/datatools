@@ -1,3 +1,5 @@
+#' @import readr
+
 split_id <- function(id_punto) {
   if (is.na(id_punto)) {
     return(rep(NA, 4))
@@ -14,4 +16,10 @@ check_trace_from_id <- function(dataframe) {
     rows <- glue::glue_collapse(which(trace_from_id != traces), ", ", last = " and ")
     stop(glue::glue("🚨 Rows {rows} have different traces"))
   }
+}
+
+#' @export
+check_traces <- function(k9_traces_path = "esfuerzos_k9_gatos_guadalupe/registros_rastros_de_gatos_k9_guadalupe.csv") {
+  data_traces <- read_csv(k9_traces_path, show_col_types = FALSE)
+  check_trace_from_id(data_traces)
 }
