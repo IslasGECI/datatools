@@ -20,6 +20,7 @@ check:
 	R -e "library(styler)" \
 	  -e "resumen <- style_dir('src')" \
 	  -e "resumen <- rbind(resumen, style_dir('robinson_data'))" \
+	  -e "resumen <- rbind(resumen, style_dir('validates_tdp'))" \
 	  -e "resumen <- rbind(resumen, style_dir('tests/testthat'))" \
 	  -e "any(resumen[[2]])" \
 	  | grep FALSE
@@ -40,17 +41,26 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('robinson_data')" \
+	  -e "style_dir('validates_tdp')" \
 	  -e "style_dir('tests/testthat')"
 	black --line-length 100 src
 	black --line-length 100 tests
 
 init: setup tests
 
-install: 
+install: install_robinson install_validate
+
+install_robinson: 
 	cd robinson_data && R -e "devtools::document()" && \
 	R CMD build . && \
 	R CMD check robinson.data_0.1.0.tar.gz && \
 	R CMD INSTALL robinson.data_0.1.0.tar.gz
+
+install_validate:
+	cd validates_tdp && R -e "devtools::document()" && \
+	R CMD build . && \
+	R CMD check validates.tdp_0.1.0.tar.gz && \
+	R CMD INSTALL validates.tdp_0.1.0.tar.gz
 
 linter:
 	sqlfluff lint src/*.sql
@@ -68,8 +78,11 @@ tests: tests_bash tests_r
 tests_bash:
 	bats tests/bats_test/test_weekly_resume.sh
 
-tests_r: tests_r_robinson_data
+tests_r: tests_r_robinson_data tests_r_validate
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
 
 tests_r_robinson_data:
 	cd robinson_data && R -e "devtools::test()"
+
+tests_r_validate:
+	cd validates_tdp && R -e "devtools::test()"
