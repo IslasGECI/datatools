@@ -19,7 +19,7 @@ check_trace_from_id <- function(dataframe) {
 }
 
 #' @export
-check_traces <- function(k9_traces_path = "esfuerzos_k9_gatos_guadalupe/registros_rastros_de_gatos_k9_guadalupe.csv") {
+check_traces <- function(k9_traces_path = "data/esfuerzos_k9_gatos_guadalupe/registros_rastros_de_gatos_k9_guadalupe.csv") {
   data_traces <- read_csv(k9_traces_path, show_col_types = FALSE)
   check_trace_from_id(data_traces)
 }
