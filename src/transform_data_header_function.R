@@ -21,6 +21,8 @@ transform_date_format <- function(wrong_format_date) {
   date <- as.Date(wrong_format_date, "%Y-%m-%d") %>% format("%d/%b/%Y")
   date <- str_replace(date, "Jan", "Ene")
   date <- str_replace(date, "Apr", "Abr")
+  date <- str_replace(date, "Aug", "Ago")
+  date <- str_replace(date, "Dec", "Dic")
   return(date)
 }
 
