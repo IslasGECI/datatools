@@ -11,10 +11,10 @@ check_trace_from_id <- function(dataframe) {
   splited_ids <- sapply(dataframe$ID_punto, split_id, simplify = FALSE, USE.NAMES = FALSE)
   trace_from_id <- sapply(splited_ids, `[[`, 4)
   traces <- dataframe$Tipo_de_rastro
-  are_not_identical <- !identical(trace_from_id, traces)
-  if (are_not_identical) {
-    rows <- glue::glue_collapse(which(trace_from_id != traces), ", ", last = " and ")
-    stop(glue::glue("🚨 Rows {rows} have different traces"))
+  different_rows <- glue::glue_collapse(which(trace_from_id != traces), ", ", last = " and ")
+  is_different <- length(different_rows) > 0
+  if (is_different) {
+    stop(glue::glue("🚨 Rows {different_rows} have different traces"))
   }
 }
 
