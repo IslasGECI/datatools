@@ -2,8 +2,7 @@
 
 library(tidyverse)
 library(optparse)
-
-source("src/transform_data_header_function.R")
+library(validates.tdp)
 
 # Sección de la CLI
 option_list <- list(

@@ -10,7 +10,10 @@ Config/testthat/edition: 3
 Description: Tests to validate tabular datapackage
 Encoding: UTF-8
 Imports:
+	data.table,
+	dplyr,
     glue,
+	lubridate,
     readr,
     stringr,
 LazyData: true

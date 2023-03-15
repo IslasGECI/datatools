@@ -3,8 +3,7 @@
 library(tidyverse)
 library(optparse)
 library(reshape2)
-
-source("src/transform_data_header_function.R")
+library(validates.tdp)
 
 # Sección de la CLI
 option_list <- list(
@@ -19,6 +18,6 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 options <- parse_args(opt_parser)
 csv <- options$data
-csv_data <- fread(csv, drop = c(1:4))
+csv_data <- data.table::fread(csv, drop = c(1:4))
 results <- transform_data_header(csv_data)
 cat(format_csv(results))

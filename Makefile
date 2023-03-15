@@ -20,8 +20,7 @@ check:
 	R -e "library(styler)" \
 	  -e "resumen <- style_dir('src')" \
 	  -e "resumen <- rbind(resumen, style_dir('robinson_data'))" \
-	  -e "resumen <- rbind(resumen, style_dir('validates_tdp'))" \
-	  -e "resumen <- rbind(resumen, style_dir('tests/testthat'))" \
+	  -e "resumen <- rbind(resumen, style_dir('validates_tdp'))"
 	  -e "any(resumen[[2]])" \
 	  | grep FALSE
 	black --check --line-length 100 src
@@ -41,8 +40,7 @@ format:
 	R -e "library(styler)" \
 	  -e "style_dir('src')" \
 	  -e "style_dir('robinson_data')" \
-	  -e "style_dir('validates_tdp')" \
-	  -e "style_dir('tests/testthat')"
+	  -e "style_dir('validates_tdp')"
 	black --line-length 100 src
 	black --line-length 100 tests
 
@@ -79,7 +77,6 @@ tests_bash:
 	bats tests/bats_test/test_weekly_resume.sh
 
 tests_r: tests_r_robinson_data tests_r_validate
-	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
 
 tests_r_robinson_data:
 	cd robinson_data && R -e "devtools::test()"

@@ -1,7 +1,8 @@
-library(data.table)
-library(lubridate)
-library(stringr)
+#' @import data.table
+#' @import lubridate
+#' @import stringr
 
+#' @export
 transform_data_header <- function(csv_data) {
   dates <- names(csv_data)
   tmp_date <- c()
@@ -15,6 +16,16 @@ transform_data_header <- function(csv_data) {
     "real_date" = real_date
   )
   return(dates_table)
+}
+
+#' @export
+fix_date_format_in_column_names <- function(input) {
+  ind <- get_indices(input)
+  table_column_names <- get_fixed_date_column_names(input)
+  input_column_names <- colnames(input)
+  input_column_names[ind[["first_date_column"]]:ind[["last_date_column"]]] <- table_column_names
+  colnames(input) <- input_column_names
+  return(input)
 }
 
 transform_date_format <- function(wrong_format_date) {
@@ -37,13 +48,4 @@ get_fixed_date_column_names <- function(table_with_wrong_column_names) {
   wrong_date_columnames <- colnames(date_table)
   correct_date_columnames <- transform_date_format(wrong_date_columnames)
   return(correct_date_columnames)
-}
-
-fix_date_format_in_column_names <- function(input) {
-  ind <- get_indices(input)
-  table_column_names <- get_fixed_date_column_names(input)
-  input_column_names <- colnames(input)
-  input_column_names[ind[["first_date_column"]]:ind[["last_date_column"]]] <- table_column_names
-  colnames(input) <- input_column_names
-  return(input)
 }
