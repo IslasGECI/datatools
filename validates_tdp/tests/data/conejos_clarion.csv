@@ -1,4 +1,4 @@
-Isla,Fecha,Transecto no.,Hora inicio,Hora fin,Especie,# individuos ,Distancia (m),Tipo de Vegetación,Porcentaje_nubosidad,Velocidad_viento,Temperatura,Humedad,Observaciones
+Isla,Fecha,Transecto no.,Hora_inicio,Hora_final,Especie,# individuos ,Distancia (m),Tipo de Vegetación,Porcentaje_nubosidad,Velocidad_viento,Temperatura,Humedad,Observaciones
 Clarión,13/06/2012,1,08:30:00,09:40:00,Oryctolagus cuniculus,1,19,,,,,,
 Clarión,13/06/2019,3,20:40:00,21:52:00,Oryctolagus cuniculus,1,4,Karwinskia/Tribulus scrub,90,,,,
 Clarión,13/06/2021,3,20:40:00,21:52:00,Oryctolagus cuniculus,1,6,Karwinskia/Tribulus scrub,90,,,,

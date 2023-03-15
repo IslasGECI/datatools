@@ -1,9 +1,11 @@
+transects_data <- read_csv("../data/conejos_clarion.csv", show_col_types = FALSE)
 describe(
   "Join tables",
   {
-    transects_data <- read_csv("../data/conejos_clarion.csv")
-    coordinates_data <- read_csv("../data/coordenadas_transectos_conejos_clarion_2018-2021.csv")
+    coordinates_data <- read_csv("../data/coordenadas_transectos_conejos_clarion_2018-2021.csv", show_col_types = FALSE)
     obtained <- join_coordinates_and_transects(transects_data, coordinates_data)
+    glimpse(obtained)
+    glimpse(coordinates_data)
     it("Check table structure", {
       obtained_columns <- colnames(obtained)
       expected_columns <- c(
@@ -34,9 +36,36 @@ describe(
       expected_season <- c(2012, 2019, 2021, rep(2022, 12))
       expect_equal(obtained_season, expected_season)
     })
+    it("Check transect column", {
+      obtained_transect <- obtained$Transecto
+      expected_transect <- c(
+        "Conejos_01",
+        rep("Conejos_03", 2),
+        rep("Conejos_04", 2),
+        rep("Conejos_05", 3),
+        rep("Conejos_04", 2),
+        "Conejos_05",
+        "Conejos_06",
+        rep("Conejos_07", 2),
+        "Conejos_11"
+      )
+      expect_equal(obtained_transect, expected_transect)
+    })
   }
 )
-
+describe("Assign id", {
+  it("assign_id", {
+    obtained_ids <- assign_id(transects_data)
+    expected_ids <- 1:15
+    expect_equal(obtained_ids, expected_ids)
+  })
+  it("assign_id with starting_id", {
+    starting_id <- 7
+    obtained_ids <- assign_id(transects_data, starting_id)
+    expected_ids <- starting_id:21
+    expect_equal(obtained_ids, expected_ids)
+  })
+})
 describe("Rename transectos", {
   it("rename transect", {
     raw_column <- tibble::tibble("Transecto no." = c(1, 3, 5, 12))
