@@ -1,8 +1,10 @@
-transects_data <- read_csv("../data/conejos_clarion.csv", show_col_types = FALSE)
+transect_path <- "../data/conejos_clarion.csv"
+transects_data <- read_csv(transect_path, show_col_types = FALSE)
 describe(
   "Join tables",
   {
-    coordinates_data <- read_csv("../data/coordenadas_transectos_conejos_clarion_2018-2021.csv", show_col_types = FALSE)
+    coordinates_path <- "../data/coordenadas_transectos_conejos_clarion_2018-2021.csv"
+    coordinates_data <- read_csv(coordinates_path, show_col_types = FALSE)
     obtained <- join_coordinates_and_transects(transects_data, coordinates_data)
     glimpse(obtained)
     glimpse(coordinates_data)
@@ -30,6 +32,13 @@ describe(
         "Observaciones"
       )
       expect_equal(obtained_columns, expected_columns)
+    })
+    it("Write joined table", {
+      output_path <- "../data/joined_table.csv"
+      testtools::delete_output_file(output_path)
+      id_start <- 678
+      write_transect_and_coordinates_table(output_path, id_start, transect_path, coordinates_path)
+      expect_true(testtools::exist_output_file(output_path))
     })
     it("Check season column", {
       obtained_season <- obtained$Temporada
