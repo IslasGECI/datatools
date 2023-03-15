@@ -28,8 +28,8 @@ fix_date_format_in_column_names <- function(input) {
   return(input)
 }
 
-transform_date_format <- function(wrong_format_date) {
-  date <- as.Date(wrong_format_date, "%Y-%m-%d") %>% format("%d/%b/%Y")
+transform_date_format <- function(wrong_format_date, date_format = "%Y-%m-%d") {
+  date <- as.Date(wrong_format_date, date_format) %>% format("%d/%b/%Y")
   date <- str_replace(date, "Jan", "Ene")
   date <- str_replace(date, "Apr", "Abr")
   date <- str_replace(date, "Aug", "Ago")
