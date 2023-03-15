@@ -1,9 +1,9 @@
-
+#' @import dplyr
 
 join_coordinates_and_transects <- function(transects_data, coordinates_data) {
   tibble::tibble(
     Id = 0,
-    Temporada = 0,
+    Temporada = as.numeric(substring(transects_data$Fecha, nchar(transects_data$Fecha) - 3, nchar(transects_data$Fecha))),
     Fecha = 0,
     Hora_inicio = 0,
     Hora_final = 0,
@@ -22,4 +22,11 @@ join_coordinates_and_transects <- function(transects_data, coordinates_data) {
     Humedad = 0,
     Observaciones = 0
   )
+}
+
+rename_transects <- function(transects_data) {
+  paste_transect <- function(transect_number) {
+    paste0("Conejos_", stringr::str_pad(as.character(transect_number), 2, pad = "0"))
+  }
+  apply(transects_data["Transecto no."], 2, paste_transect)[, 1]
 }
