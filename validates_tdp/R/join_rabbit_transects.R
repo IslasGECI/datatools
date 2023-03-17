@@ -62,13 +62,14 @@ join_coordinates_and_transects <- function(transects_data, coordinates_data, id_
 }
 
 process_transect_data <- function(transects_data, id_start, species) {
+  groups <- list("Conejos"= "Conejos", "Reptiles" = "Reptil", "Tecolotes" = "Tecolote", "Aves" = "Ave")
   transects_data <- transects_data |>
     mutate(Temporada = as.numeric(substring(Fecha, nchar(Fecha) - 3, nchar(Fecha)))) |>
     mutate(Id = assign_id(transects_data, id_start)) |>
     mutate(Fase = "Conteo/Diagnostico") |>
     mutate(Fecha = transform_date_format(Fecha, "%d/%m/%Y")) |>
     mutate(Transecto = rename_transects(transects_data, species)) |>
-    mutate(Grupo = species) |>
+    mutate(Grupo = groups[[species]]) |>
     rename(c(Cantidad_individuos = `# individuos`, Distancia = `Distancia (m)`, Tipo_de_vegetacion = `Tipo de Vegetación`)) |>
     mutate(Individuos_fuera_de_monitoreo = "NA") |>
     mutate(Cantidad_aves_sobrevolando = "NA")
