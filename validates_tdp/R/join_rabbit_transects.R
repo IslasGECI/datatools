@@ -9,6 +9,26 @@ write_transect_and_coordinates_table <- function(output_path, id_start, transect
 }
 
 join_coordinates_and_transects <- function(transects_data, coordinates_data, id_start = 1, species = "Conejos") {
+  native_fauna_columns <- c(
+      "Id",
+      "Fecha",
+      "Hora_inicio",
+      "Hora_final",
+      "Especie",
+      "Grupo",
+      "Transecto",
+      "Punto_del_transecto",
+      "Cantidad_individuos",
+      "Distancia",
+      "Individuos_fuera_de_monitoreo",
+      "Cantidad_aves_sobrevolando",
+      "Tipo_de_vegetacion",
+      "Porcentaje_nubosidad",
+      "Velocidad_viento",
+      "Temperatura",
+      "Humedad",
+      "Observaciones"
+    )
   columns_for_species <- list(
     "Conejos" = c(
       "Id",
@@ -31,26 +51,9 @@ join_coordinates_and_transects <- function(transects_data, coordinates_data, id_
       "Humedad",
       "Observaciones"
     ),
-    "Tecolotes" = c(
-      "Id",
-      "Fecha",
-      "Hora_inicio",
-      "Hora_final",
-      "Especie",
-      "Grupo",
-      "Transecto",
-      "Punto_del_transecto",
-      "Cantidad_individuos",
-      "Distancia",
-      "Individuos_fuera_de_monitoreo",
-      "Cantidad_aves_sobrevolando",
-      "Tipo_de_vegetacion",
-      "Porcentaje_nubosidad",
-      "Velocidad_viento",
-      "Temperatura",
-      "Humedad",
-      "Observaciones"
-    )
+    "Tecolotes" = native_fauna_columns,
+    "Reptiles" = native_fauna_columns,
+    "Aves" = native_fauna_columns
   )
   transects_data <- process_transect_data(transects_data, id_start, species)
   coordinates_data <- process_coordinates_data(coordinates_data, species)
@@ -66,24 +69,19 @@ process_transect_data <- function(transects_data, id_start, species) {
     mutate(Fecha = transform_date_format(Fecha, "%d/%m/%Y")) |>
     mutate(Transecto = rename_transects(transects_data, species)) |>
     mutate(Grupo = species) |>
+    rename(c(Cantidad_individuos = `# individuos`, Distancia = `Distancia (m)`, Tipo_de_vegetacion = `Tipo de Vegetación`)) |>
     mutate(Individuos_fuera_de_monitoreo = "NA") |>
-    mutate(Cantidad_aves_sobrevolando = "NA") |>
-    rename(c(Cantidad_individuos = `# individuos`, Distancia = `Distancia (m)`, Tipo_de_vegetacion = `Tipo de Vegetación`))
+    mutate(Cantidad_aves_sobrevolando = "NA")
 }
 
 process_coordinates_data <- function(coordinates_data, species = "Conejos") {
+  rabbits_columns <- c("Nombre_transecto","Area_isla","Longitud")
+  native_fauna_columns <- c(rabbits_columns,"Punto_del_transecto")
   used_columns <- list(
-    "Conejos" = c(
-      "Nombre_transecto",
-      "Area_isla",
-      "Longitud"
-    ),
-    "Tecolotes" = c(
-      "Nombre_transecto",
-      "Area_isla",
-      "Longitud",
-      "Punto_del_transecto"
-    )
+    "Conejos" = rabbits_columns,
+    "Tecolotes" = native_fauna_columns,
+    "Reptiles" = native_fauna_columns,
+    "Aves" = native_fauna_columns
   )
   coordinates_data |>
     rename(Longitud = Longitud_transecto) |>
