@@ -10,25 +10,25 @@ write_transect_and_coordinates_table <- function(output_path, id_start, transect
 
 join_coordinates_and_transects <- function(transects_data, coordinates_data, id_start = 1, species = "Conejos") {
   native_fauna_columns <- c(
-      "Id",
-      "Fecha",
-      "Hora_inicio",
-      "Hora_final",
-      "Especie",
-      "Grupo",
-      "Transecto",
-      "Punto_del_transecto",
-      "Cantidad_individuos",
-      "Distancia",
-      "Individuos_fuera_de_monitoreo",
-      "Cantidad_aves_sobrevolando",
-      "Tipo_de_vegetacion",
-      "Porcentaje_nubosidad",
-      "Velocidad_viento",
-      "Temperatura",
-      "Humedad",
-      "Observaciones"
-    )
+    "Id",
+    "Fecha",
+    "Hora_inicio",
+    "Hora_final",
+    "Especie",
+    "Grupo",
+    "Transecto",
+    "Punto_del_transecto",
+    "Cantidad_individuos",
+    "Distancia",
+    "Individuos_fuera_de_monitoreo",
+    "Cantidad_aves_sobrevolando",
+    "Tipo_de_vegetacion",
+    "Porcentaje_nubosidad",
+    "Velocidad_viento",
+    "Temperatura",
+    "Humedad",
+    "Observaciones"
+  )
   columns_for_species <- list(
     "Conejos" = c(
       "Id",
@@ -62,7 +62,7 @@ join_coordinates_and_transects <- function(transects_data, coordinates_data, id_
 }
 
 process_transect_data <- function(transects_data, id_start, species) {
-  groups <- list("Conejos"= "Conejos", "Reptiles" = "Reptil", "Tecolotes" = "Tecolote", "Aves" = "Ave")
+  groups <- list("Conejos" = "Conejos", "Reptiles" = "Reptil", "Tecolotes" = "Tecolote", "Aves" = "Ave")
   transects_data <- transects_data |>
     mutate(Temporada = as.numeric(substring(Fecha, nchar(Fecha) - 3, nchar(Fecha)))) |>
     mutate(Id = assign_id(transects_data, id_start)) |>
@@ -76,8 +76,8 @@ process_transect_data <- function(transects_data, id_start, species) {
 }
 
 process_coordinates_data <- function(coordinates_data, species = "Conejos") {
-  rabbits_columns <- c("Nombre_transecto","Area_isla","Longitud")
-  native_fauna_columns <- c(rabbits_columns,"Punto_del_transecto")
+  rabbits_columns <- c("Nombre_transecto", "Area_isla", "Longitud")
+  native_fauna_columns <- c(rabbits_columns, "Punto_del_transecto")
   used_columns <- list(
     "Conejos" = rabbits_columns,
     "Tecolotes" = native_fauna_columns,
