@@ -79,6 +79,16 @@ describe(
       )
       expect_equal(obtained_columns, expected_columns)
     })
+    it("Check bird table contents", {
+      species <- "Aves"
+      transect_path_birds <- "../data/aves_2022.csv"
+      transect_data_birds <- read_csv(transect_path_birds, show_col_types = FALSE)
+      expected_transect_points <- transect_data_birds[["Punto no."]]
+      coordinates_data_birds <- read_csv(coordinates_path_tecolotes, show_col_types = FALSE)
+      obtained <- join_coordinates_and_transects(transect_data_birds, coordinates_data_birds, species = species)
+      obtained_transect_points <- obtained$Punto_del_transecto
+      expect_equal(obtained_transect_points, expected_transect_points)
+    })
     it("Check season column", {
       obtained_season <- obtained$Temporada
       expected_season <- c(2012, 2019, 2021, rep(2022, 12))
