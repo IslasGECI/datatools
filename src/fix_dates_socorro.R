@@ -2,7 +2,7 @@
 
 library(tidyverse)
 library(optparse)
-library(validates.tdp)
+library(validate.tdp)
 
 # Sección de la CLI
 option_list <- list(

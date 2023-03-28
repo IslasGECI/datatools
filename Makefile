@@ -57,8 +57,8 @@ install_robinson:
 install_validate:
 	cd validates_tdp && R -e "devtools::document()" && \
 	R CMD build . && \
-	R CMD check validates.tdp_0.1.0.tar.gz && \
-	R CMD INSTALL validates.tdp_0.1.0.tar.gz
+	R CMD check validate.tdp_0.1.0.tar.gz && \
+	R CMD INSTALL validate.tdp_0.1.0.tar.gz
 
 linter:
 	sqlfluff lint src/*.sql
