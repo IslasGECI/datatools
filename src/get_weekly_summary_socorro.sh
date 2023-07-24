@@ -9,3 +9,4 @@ raw_dates_format=${1}
 csvcut -c 2-12 "$raw_dates_format" > $tmp_socorro_selected_columns
 ./src/fix_dates_socorro.sh "$tmp_socorro_selected_columns" > $socorro_cleaned_date_format
 ./src/get_weekly_summary.sh $socorro_cleaned_date_format
+cp socorro_cleaned_format.csv results/socorro_cleaned_format.csv
