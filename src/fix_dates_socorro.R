@@ -17,6 +17,6 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 options <- parse_args(opt_parser)
 file <- options$data
-input <- read_csv(file, show_col_types=FALSE)
+input <- read_csv(file, show_col_types = FALSE)
 output <- fix_date_format_in_column_names(input)
 cat(format_csv(output))
