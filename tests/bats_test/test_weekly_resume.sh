@@ -47,6 +47,7 @@
 }
 
 @test "get_weekly_effort_captures_socorro" {
+  mkdir --parents results/
   src/get_weekly_summary_socorro.sh tests/data_tests/raw_format_date_cat_socorro_island.csv
   result="$(md5sum weekly_summary_socorro_cleaned_format.csv | cut -d " " -f 1)"
   [ "$result" = "df4a333e0d1129a3eadde3bfb81dd1ed" ]
